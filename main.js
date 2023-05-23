@@ -1,54 +1,50 @@
-const pregunta1 = "¿Cuál es la capital de Francia?\n" +
-                   "A. Madrid\n" +
-                   "B. Londres\n" +
-                   "C. París\n" +
-                   "D. Roma";
+function iniciarJuego() {
+  var puntaje = 0;
 
-const respuesta1 = "C";
+  var pregunta1 = {
+    pregunta: "¿Cuál es la capital de Francia?",
+    respuesta: "Paris"
+  };
 
-const pregunta2 = "¿En qué año se fundó Apple?\n" +
-                   "A. 1976\n" +
-                   "B. 1980\n" +
-                   "C. 1984\n" +
-                   "D. 1990";
+  var pregunta2 = {
+    pregunta: "¿Cuál es el río más largo del mundo?",
+    respuesta: "Amazonas"
+  };
 
-const respuesta2 = "A";
+  var pregunta3 = {
+    pregunta: "¿Cuántos continentes hay en el mundo?",
+    respuesta: "7"
+  };
 
-const pregunta3 = "¿Quién pintó la Mona Lisa?\n" +
-                   "A. Vincent van Gogh\n" +
-                   "B. Pablo Picasso\n" +
-                   "C. Leonardo da Vinci\n" +
-                   "D. Salvador Dalí";
+  var totalPreguntas = 3;
 
-const respuesta3 = "C";
+  var preguntasRespondidas = 0;
 
-let puntaje = 0;
+  function hacerPregunta(pregunta) {
+    var respuestaUsuario = prompt(pregunta.pregunta).toUpperCase();
+    var respuestaCorrecta = pregunta.respuesta.toUpperCase();
 
+    if (respuestaUsuario === respuestaCorrecta) {
+      puntaje++;
+      alert("¡Correcto!");
+    } else {
+      alert("Incorrecto. La respuesta correcta es: " + respuestaCorrecta);
+    }
 
-const respuestaUsuario1 = prompt(pregunta1);
-if (respuestaUsuario1.toUpperCase() === respuesta1) {
-  alert("¡Correcto!");
-  puntaje++;
-} else {
-  alert("Incorrecto. La respuesta correcta era C.");
+    preguntasRespondidas++;
+  }
+
+  for (var i = 0; i < totalPreguntas; i++) {
+    if (i === 0) {
+      hacerPregunta(pregunta1);
+    } else if (i === 1) {
+      hacerPregunta(pregunta2);
+    } else if (i === 2) {
+      hacerPregunta(pregunta3);
+    }
+  }
+
+  alert("Juego terminado. Obtuviste " + puntaje + " puntos de " + totalPreguntas + " preguntas.");
 }
 
-
-const respuestaUsuario2 = prompt(pregunta2);
-if (respuestaUsuario2.toUpperCase() === respuesta2) {
-  alert("¡Correcto!");
-  puntaje++;
-} else {
-  alert("Incorrecto. La respuesta correcta era A.");
-}
-
-
-const respuestaUsuario3 = prompt(pregunta3);
-if (respuestaUsuario3.toUpperCase() === respuesta3) {
-  alert("¡Correcto!");
-  puntaje++;
-} else {
-  alert("Incorrecto. La respuesta correcta era C.");
-}
-
-alert("Fin del juego. Tu puntaje es " + puntaje + " de 3 preguntas.");
+iniciarJuego();
