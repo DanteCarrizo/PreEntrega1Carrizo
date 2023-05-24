@@ -1,50 +1,37 @@
-function iniciarJuego() {
-  var puntaje = 0;
-
-  var pregunta1 = {
-    pregunta: "¿Cuál es la capital de Francia?",
-    respuesta: "Paris"
-  };
-
-  var pregunta2 = {
-    pregunta: "¿Cuál es el río más largo del mundo?",
-    respuesta: "Amazonas"
-  };
-
-  var pregunta3 = {
-    pregunta: "¿Cuántos continentes hay en el mundo?",
-    respuesta: "7"
-  };
-
-  var totalPreguntas = 3;
-
-  var preguntasRespondidas = 0;
-
-  function hacerPregunta(pregunta) {
-    var respuestaUsuario = prompt(pregunta.pregunta).toUpperCase();
-    var respuestaCorrecta = pregunta.respuesta.toUpperCase();
-
-    if (respuestaUsuario === respuestaCorrecta) {
-      puntaje++;
-      alert("¡Correcto!");
-    } else {
-      alert("Incorrecto. La respuesta correcta es: " + respuestaCorrecta);
-    }
-
-    preguntasRespondidas++;
-  }
-
-  for (var i = 0; i < totalPreguntas; i++) {
-    if (i === 0) {
-      hacerPregunta(pregunta1);
-    } else if (i === 1) {
-      hacerPregunta(pregunta2);
-    } else if (i === 2) {
-      hacerPregunta(pregunta3);
-    }
-  }
-
-  alert("Juego terminado. Obtuviste " + puntaje + " puntos de " + totalPreguntas + " preguntas.");
+function RespuestaUsuario(intentos) {
+  return parseInt(prompt("Adivina el número del 1 al 10 (tienes " + intentos + " intentos restantes):"));
 }
 
-iniciarJuego();
+function MensajeAcierto() {
+  alert("¡Correcto! ¡Has adivinado el número!");
+}
+
+function MensajeFallo() {
+  alert("Respuesta incorrecta.");
+}
+
+function MensajeAgotado(respuestaCorrecta) {
+  alert("Lo siento, has agotado todos tus intentos. El número correcto era " + respuestaCorrecta + ".");
+}
+
+function simuladorAdivinanza() {
+  const respuestaCorrecta = 7;
+  let intentos = 3;
+
+  while (intentos > 0) {
+    const respuestaUsuario = RespuestaUsuario(intentos);
+
+    if (respuestaUsuario === respuestaCorrecta) {
+      MensajeAcierto();
+      return;
+    } else {
+      MensajeFallo();
+      intentos--;
+    }
+  }
+
+  MensajeAgotado(respuestaCorrecta);
+}
+
+simuladorAdivinanza();
+
